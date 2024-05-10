@@ -1,0 +1,9 @@
+---
+- name: Include tasks to install Debian packages
+  import_tasks: install_debian.yml
+
+- name: Update repo and install specified packages
+  ansible.builtin.package:
+    update_cache: true
+    name: "{{ item }}"
+  loop: "{{ install_packages }}"

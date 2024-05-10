@@ -1,0 +1,17 @@
+--- 
+- name: Playbook for setting up k8s tools
+  hosts: k8s_tools
+  become: yes
+  tasks:
+    - name: Install k8s packages
+      include_role:
+        name: package
+      vars:
+        repository_url: "{{ k8s_repo }}"
+        repository_key_url: "{{ k8s_repo_key }}"
+        keyring: "{{ k8s_keyring }}"
+        install_packages: "{{ k8s_packages }}"
+
+    - name: Set up k8s packages
+      include_role:
+        name: k8s_tools_setup

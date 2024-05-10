@@ -1,0 +1,9 @@
+.vscode
+.git
+.gitignore
+mocks/
+*_test.go
+Makefile
+README.md
+Jenkinsfile
+ansible/

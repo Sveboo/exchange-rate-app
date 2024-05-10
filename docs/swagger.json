@@ -1,0 +1,124 @@
+{
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "schemes": [
+        "http"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "A collection of endpoints available to retrieve the exchange rate for a specific date and currency.",
+        "title": "Exchange rate application documentation",
+        "contact": {
+            "name": "Maintainer",
+            "url": "https://github.com/Sveboo/exchange-rate-app",
+            "email": "svebo3348@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "host": "localhost:8000",
+    "paths": {
+        "/": {
+            "get": {
+                "description": "Get info about exchenge rate app",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get info",
+                "responses": {
+                    "200": {
+                        "description": "Information has been received successfully",
+                        "schema": {
+                            "$ref": "#/definitions/httpgin.InfoResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/currency{currency}{date}": {
+            "get": {
+                "description": "Returns exchange rates based on user input",
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "Get exchange rate",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "example": "USD",
+                        "description": "ISO currency name",
+                        "name": "currency",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "example": "2016-01-02",
+                        "description": "date in format YYYY-MM-DD",
+                        "name": "date",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Exchange rate has been received successfully",
+                        "schema": {
+                            "$ref": "#/definitions/httpgin.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid query parameters",
+                        "schema": {
+                            "$ref": "#/definitions/httpgin.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Exchange rate receiving caused error",
+                        "schema": {
+                            "$ref": "#/definitions/httpgin.Response"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "httpgin.InfoResponse": {
+            "type": "object",
+            "properties": {
+                "author": {
+                    "type": "string",
+                    "example": "n.lastname"
+                },
+                "service": {
+                    "type": "string",
+                    "example": "application"
+                },
+                "version": {
+                    "type": "string",
+                    "example": "0.0.0"
+                }
+            }
+        },
+        "httpgin.Response": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "number"
+                    },
+                    "example": {
+                        "USD": 33.4013
+                    }
+                },
+                "service": {
+                    "type": "string",
+                    "example": "application"
+                }
+            }
+        }
+    }
+}

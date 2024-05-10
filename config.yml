@@ -1,0 +1,6 @@
+currenciesListURL: https://www.cbr.ru/scripts/XML_valFull.asp
+currenciesRatesURL: https://www.cbr.ru/scripts/XML_daily.asp
+port: 8000
+service: currency
+author: s.bolotina
+version: 1.0.0

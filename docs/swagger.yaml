@@ -1,0 +1,84 @@
+consumes:
+- application/json
+definitions:
+  httpgin.InfoResponse:
+    properties:
+      author:
+        example: n.lastname
+        type: string
+      service:
+        example: application
+        type: string
+      version:
+        example: 0.0.0
+        type: string
+    type: object
+  httpgin.Response:
+    properties:
+      data:
+        additionalProperties:
+          type: number
+        example:
+          USD: 33.4013
+        type: object
+      service:
+        example: application
+        type: string
+    type: object
+host: localhost:8000
+info:
+  contact:
+    email: svebo3348@gmail.com
+    name: Maintainer
+    url: https://github.com/Sveboo/exchange-rate-app
+  description: A collection of endpoints available to retrieve the exchange rate for
+    a specific date and currency.
+  title: Exchange rate application documentation
+  version: 1.0.0
+paths:
+  /:
+    get:
+      description: Get info about exchenge rate app
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Information has been received successfully
+          schema:
+            $ref: '#/definitions/httpgin.InfoResponse'
+      summary: Get info
+  /currency{currency}{date}:
+    get:
+      description: Returns exchange rates based on user input
+      parameters:
+      - description: ISO currency name
+        example: USD
+        in: query
+        name: currency
+        type: string
+      - description: date in format YYYY-MM-DD
+        example: "2016-01-02"
+        in: query
+        name: date
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Exchange rate has been received successfully
+          schema:
+            $ref: '#/definitions/httpgin.Response'
+        "400":
+          description: Invalid query parameters
+          schema:
+            $ref: '#/definitions/httpgin.Response'
+        "500":
+          description: Exchange rate receiving caused error
+          schema:
+            $ref: '#/definitions/httpgin.Response'
+      summary: Get exchange rate
+produces:
+- application/json
+schemes:
+- http
+swagger: "2.0"

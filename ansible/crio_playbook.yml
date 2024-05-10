@@ -1,0 +1,17 @@
+---
+- name: Playbook for setting up crio tools
+  hosts: crio
+  become: yes
+  tasks:
+    - name: Install crio packages
+      include_role:
+        name: package
+      vars:
+        repository_url: "{{ crio_repo }}"
+        repository_key_url: "{{ crio_repo }}"
+        keyring: "{{ crio_keyring }}"
+        install_packages: "{{ crio_packages }}"
+
+    - name: Set up crio packages
+      include_role:
+        name: crio_setup

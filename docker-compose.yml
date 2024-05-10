@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+
+  app:
+    image: sveboo/exchange-rate-app:stable
+    environment:
+      - VERSION=1.0.0
+      - PORT=${PORT:-8000}
+    ports:
+      - 8000:${PORT:-8000}

@@ -1,0 +1,6 @@
+crio_repo: "https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.30/deb/"
+crio_repo_key: "https://pkgs.k8s.io/addons:/cri-o:/stable:/v1.30/deb/Release.key"
+crio_keyring: "/etc/apt/trusted.gpg.d/cri-o-apt-keyring.gpg"
+crio_packages:
+  - software-properties-common
+  - cri-o

@@ -1,0 +1,7 @@
+k8s_repo: "https://pkgs.k8s.io/core:/stable:/v1.30/deb/"
+k8s_repo_key: "https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key"
+k8s_keyring: "/etc/apt/trusted.gpg.d/kubernetes-apt-keyring.gpg"
+k8s_packages:
+  - kubelet
+  - kubectl
+  - kubeadm

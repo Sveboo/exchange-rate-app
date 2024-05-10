@@ -1,0 +1,14 @@
+- name: Hold kubelet, kubeadm, kubectl packages
+  ansible.builtin.dpkg_selections:
+    name: "{{ item }}"
+    selection: hold
+  loop:
+    - kubelet
+    - kubeadm
+    - kubectl
+
+- name: Enable and start kubelet service
+  ansible.builtin.service:
+    name: kubelet
+    state: started
+    enabled: yes

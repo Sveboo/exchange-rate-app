@@ -1,0 +1,12 @@
+--- 
+- name: Playbook for setting up Jenkins
+  hosts: jenkins
+  become: yes
+  - name: Set up Jenkins
+    include_role:
+      name: jenkins
+    vars:
+      repository_url: "{{ jenkins_repo }}"
+      repository_key_url: "{{ jenkins_repo_key }}"
+      install_packages: "{{ jenkins_packages }}"
+

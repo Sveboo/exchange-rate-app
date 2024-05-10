@@ -1,0 +1,6 @@
+---
+jenkins_repo: "https://pkg.jenkins.io/debian-stable"
+jenkins_repo_key: "https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key"
+jenkins_packages:
+  - openjdk-17-jre-headless
+  - jenkins

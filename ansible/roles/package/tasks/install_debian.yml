@@ -1,0 +1,14 @@
+- name: Add required packages
+  ansible.builtin.package:
+    name: gpg
+
+- name: Add repo
+  ansible.builtin.apt_key:
+    url: "{{ repository_key_url }}"
+    keyring: "{{ keyring }}"
+  when: repository_key_url != ""
+
+- name: Add repositories to sources list
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by={{ keyring }}] {{ repository_url }} /"
+  when: repository_url != ""
